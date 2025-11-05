@@ -37,19 +37,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Toggle history
   historyToggle.addEventListener('click', () => {
-    if (historyDiv.style.display === 'none' || historyDiv.style.display === '') {
-      historyDiv.style.display = 'block';
-      historyToggle.textContent = 'Hide History';
-    } else {
-      historyDiv.style.display = 'none';
-      historyToggle.textContent = 'View History';
-    }
+    const isVisible = historyDiv.style.display === 'block';
+    historyDiv.style.display = isVisible ? 'none' : 'block';
+    document.getElementById('history-header').style.display = isVisible ? 'none' : 'block';
+    historyToggle.textContent = isVisible ? 'View History' : 'Hide History';
   });
 
   // Add event listeners for export buttons
   document.getElementById('copy-clipboard').addEventListener('click', () => {
-    const currentResult = getCurrentDisplayedResult();
     if (currentResult) copyToClipboard(currentResult);
+  });
+
+  // Clear history button
+  document.getElementById('clear-history').addEventListener('click', async () => {
+    await chrome.storage.local.set({ history: [] });
+    displayHistory([]);
   });
 });
 
@@ -85,21 +87,35 @@ function displayHistory(history) {
     historyDiv.innerHTML = '<p>No history available.</p>';
     return;
   }
-  historyDiv.innerHTML = history.map(item => `
-    <div class="history-item" data-index="${history.indexOf(item)}">
-      <div class="history-url">${item.title || item.url}</div>
-      <div class="history-date">${new Date(item.timestamp).toLocaleString()}</div>
+  historyDiv.innerHTML = history.map((item, index) => `
+    <div class="history-item">
+      <div class="history-content" data-index="${index}">
+        <div class="history-url">${item.title || item.url}</div>
+        <div class="history-date">${new Date(item.timestamp).toLocaleString()}</div>
+      </div>
+      <button class="delete-history" data-index="${index}">✕</button>
     </div>
   `).join('');
 
   // Add click listeners to load historical analysis
-  document.querySelectorAll('.history-item').forEach(item => {
+  document.querySelectorAll('.history-content').forEach(item => {
     item.addEventListener('click', () => {
       const index = parseInt(item.dataset.index);
       const historicalResult = history[index];
       displayAnalysis(historicalResult.result, historicalResult.title, historicalResult.url);
       currentResult = historicalResult.result;
-      exportButtons.style.display = 'block'; // Allow copying historical
+      exportButtons.style.display = 'block';
+    });
+  });
+
+  // Add delete listeners
+  document.querySelectorAll('.delete-history').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const index = parseInt(btn.dataset.index);
+      history.splice(index, 1);
+      await chrome.storage.local.set({ history });
+      displayHistory(history);
     });
   });
 }

@@ -12,23 +12,21 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
+      background: white;
+      color: black;
       overflow-x: hidden;
     }
 
     .container {
-      background: white;
       border-radius: 12px;
       margin: 8px;
       padding: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       min-height: 300px;
     }
 
     h3 {
       margin: 0 0 16px 0;
-      color: #1a1a1a;
+      color: black;
       font-size: 20px;
       font-weight: 600;
       text-align: center;
@@ -69,7 +67,7 @@
 
     .section-title {
       font-weight: 600;
-      color: #1a1a1a;
+      color: black;
       margin-bottom: 8px;
       font-size: 14px;
       display: flex;
@@ -104,7 +102,7 @@
 
     li::before {
       content: '•';
-      color: #667eea;
+      color: black;
       font-weight: bold;
       position: absolute;
       left: 0;
@@ -126,7 +124,7 @@
 
     button {
       padding: 10px 16px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: black;
       color: white;
       border: none;
       border-radius: 8px;
@@ -134,12 +132,10 @@
       font-size: 14px;
       font-weight: 500;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      background: #333;
     }
 
     button:active {
@@ -173,7 +169,7 @@
       text-align: center;
       margin-top: 20px;
       cursor: pointer;
-      color: #667eea;
+      color: black;
       font-size: 14px;
       font-weight: 500;
       text-decoration: underline;
@@ -191,21 +187,43 @@
     .history-item {
       margin-bottom: 12px;
       padding: 12px;
-      background: #f8f9fa;
-      border: 1px solid #e0e0e0;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .history-item:hover {
-      background: #e9ecef;
+      background: #e0e0e0;
+    }
+
+    .history-content {
+      flex: 1;
+    }
+
+    .delete-history {
+      background: none;
+      border: none;
+      color: #dc3545;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 8px;
+    }
+
+    .delete-history:hover {
+      background: #f5c6cb;
+      border-radius: 4px;
     }
 
     .history-url {
       font-weight: 600;
       font-size: 13px;
-      color: #1a1a1a;
+      color: black;
       margin-bottom: 4px;
       word-break: break-all;
     }
@@ -225,7 +243,7 @@
       margin: 0 0 8px 0;
       font-size: 16px;
       font-weight: 600;
-      color: #1a1a1a;
+      color: black;
     }
 
     .page-header a {
@@ -237,6 +255,23 @@
 
     .page-header a:hover {
       text-decoration: underline;
+    }
+
+    #history-header {
+      display: none;
+      text-align: right;
+      margin-bottom: 8px;
+    }
+
+    #clear-history {
+      color: #dc3545;
+      cursor: pointer;
+      font-size: 12px;
+      text-decoration: underline;
+    }
+
+    #clear-history:hover {
+      color: #c82333;
     }
   </style>
 </head>
@@ -250,6 +285,9 @@
       <button id="copy-clipboard">Copy to Clipboard</button>
     </div>
     <div id="history-toggle">View History</div>
+    <div id="history-header">
+      <span id="clear-history">Clear History</span>
+    </div>
     <div id="history"></div>
   </div>
   <script src="popup.js"></script>
