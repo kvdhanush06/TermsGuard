@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TermsGuard</title>
+  <style>
+    body {
+      width: 350px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      margin: 0;
+    }
+    h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .risk {
+      font-weight: bold;
+      padding: 5px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    .low {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .medium {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .high {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    #summary {
+      margin-bottom: 10px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    hr {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .no-analysis {
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h3>TermsGuard</h3>
+  <div id="content">
+    <div class="no-analysis">Loading...</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

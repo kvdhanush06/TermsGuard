@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "TermsGuard - AI-Powered Legal Document Summarizer",
+    "version": "1.0.0",
+    "description": "Instantly analyzes and summarizes terms of service, privacy policies, and user agreements with AI-powered insights.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting",
+        "notifications"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*terms*",
+                "*://*/*privacy*",
+                "*://*/*policy*",
+                "*://*/*eula*",
+                "*://*/*license*",
+                "*://*/*agreement*",
+                "*://*/*tos*",
+                "*://*/*user-agreement*",
+                "*://*/*conditions*",
+                "*://*/*legal*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "TermsGuard"
+    }
+}

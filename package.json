@@ -1,0 +1,14 @@
+{
+    "name": "termsguard",
+    "version": "1.0.0",
+    "description": "AI-Powered Legal Document Summarizer Chrome Extension",
+    "main": "background.js",
+    "scripts": {
+        "build": "node build.js"
+    },
+    "devDependencies": {
+        "dotenv": "^16.3.1"
+    },
+    "author": "Kakarlamudi Venkata Dhanush",
+    "license": "MIT"
+}
