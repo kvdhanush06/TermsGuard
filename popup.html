@@ -160,9 +160,122 @@
       margin-left: 8px;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    #dark-mode-toggle {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: black;
+    }
+
+    #search-bar {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #search-input {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 60%;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #121212;
+      color: #ffffff;
+    }
+
+    body.dark .container {
+      background: #1e1e1e;
+    }
+
+    body.dark h3,
+    body.dark .section-title,
+    body.dark .history-url,
+    body.dark .page-header h4 {
+      color: #ffffff;
+    }
+
+    body.dark .history-item {
+      background: #2a2a2a;
+      border-color: #444;
+    }
+
+    body.dark .history-item:hover {
+      background: #333;
+    }
+
+    body.dark #search-input {
+      background: #2a2a2a;
+      color: #fff;
+      border-color: #444;
+    }
+
+    body.dark #history-toggle,
+    body.dark #clear-history {
+      color: #ffffff;
+    }
+
+    body.dark .page-header a {
+      color: #90caf9;
+    }
+
+    .comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .compare-item {
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .compare-item h5 {
+      margin: 0 0 4px 0;
+      color: black;
+    }
+
+    .compare-section {
+      margin-bottom: 8px;
+    }
+
+    .compare-section strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Dark Mode for Comparison */
+    body.dark .compare-item {
+      background: #2a2a2a;
+      border-color: #444;
+    }
+
+    body.dark .compare-item h5 {
+      color: #ffffff;
+    }
+
+    body.dark .compare-section strong {
+      color: #ffffff;
+    }
+
+    body.dark .compare-item p {
+      color: #cccccc;
+    }
+
+    mark {
+      background: yellow;
+      padding: 2px;
     }
 
     #history-toggle {
@@ -273,23 +386,36 @@
     #clear-history:hover {
       color: #c82333;
     }
+
+    .small-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h3>TermsGuard</h3>
-    <div id="content">
-      <div class="loading">Loading...</div>
+    <div class="container">
+      <div class="header">
+        <h3>TermsGuard</h3>
+        <button id="dark-mode-toggle">🌙</button>
+      </div>
+      <div id="content">
+        <div class="loading">Loading...</div>
+      </div>
+      <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Search in analysis...">
+      </div>
+      <div id="export-buttons">
+        <button id="copy-clipboard">Copy to Clipboard</button>
+      </div>
+      <div id="history-toggle">View History</div>
+      <div id="history-header">
+        <span id="clear-history">Clear History</span>
+        <button id="compare-mode" class="small-btn">Compare</button>
+      </div>
+      <div id="history"></div>
     </div>
-    <div id="export-buttons">
-      <button id="copy-clipboard">Copy to Clipboard</button>
-    </div>
-    <div id="history-toggle">View History</div>
-    <div id="history-header">
-      <span id="clear-history">Clear History</span>
-    </div>
-    <div id="history"></div>
-  </div>
   <script src="popup.js"></script>
 </body>
 </html>
