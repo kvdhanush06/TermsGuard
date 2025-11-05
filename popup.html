@@ -68,12 +68,22 @@
       color: #666;
       font-style: italic;
     }
+    #export-buttons {
+      display: none;
+      margin-top: 10px;
+    }
+    #export-buttons button {
+      margin-right: 5px;
+    }
   </style>
 </head>
 <body>
   <h3>TermsGuard</h3>
   <div id="content">
     <div class="no-analysis">Loading...</div>
+  </div>
+  <div id="export-buttons">
+    <button id="copy-clipboard">Copy to Clipboard</button>
   </div>
   <script src="popup.js"></script>
 </body>

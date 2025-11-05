@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const contentDiv = document.getElementById('content');
+  const exportButtons = document.getElementById('export-buttons');
 
   // Get current tab and load analysis
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -9,9 +10,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (result) {
     displayAnalysis(result);
+    exportButtons.style.display = 'block';
   } else {
     contentDiv.innerHTML = '<div class="no-analysis">No analysis available for this page. If this is a legal document, it may still be processing or not detected.</div>';
   }
+
+  // Add event listeners for export buttons
+  document.getElementById('copy-clipboard').addEventListener('click', () => copyToClipboard(result));
 });
 
 function displayAnalysis(result) {
@@ -26,4 +31,9 @@ function displayAnalysis(result) {
       <ul>${result.red_flags.map(flag => `<li>${flag}</li>`).join('')}</ul>
     </div>
   `;
+}
+
+function copyToClipboard(result) {
+  const text = `TermsGuard Analysis\n\nRisk Level: ${result.risk_level}\n\nSummary: ${result.summary}\n\nKey Points:\n${result.key_points.map(p => `- ${p}`).join('\n')}\n\nRed Flags:\n${result.red_flags.map(f => `- ${f}`).join('\n')}`;
+  navigator.clipboard.writeText(text);
 }
