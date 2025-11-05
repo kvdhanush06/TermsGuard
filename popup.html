@@ -168,6 +168,76 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    #history-toggle {
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #667eea;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+
+    #history {
+      display: none;
+      margin-top: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 16px;
+    }
+
+    .history-item {
+      margin-bottom: 12px;
+      padding: 12px;
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .history-item:hover {
+      background: #e9ecef;
+    }
+
+    .history-url {
+      font-weight: 600;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .history-date {
+      font-size: 11px;
+      color: #6c757d;
+    }
+
+    .page-header {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .page-header h4 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .page-header a {
+      font-size: 12px;
+      color: #667eea;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .page-header a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -179,6 +249,8 @@
     <div id="export-buttons">
       <button id="copy-clipboard">Copy to Clipboard</button>
     </div>
+    <div id="history-toggle">View History</div>
+    <div id="history"></div>
   </div>
   <script src="popup.js"></script>
 </body>

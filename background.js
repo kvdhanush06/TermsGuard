@@ -5,6 +5,19 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     try {
       const result = await analyzeDocument(message.text);
       await chrome.storage.local.set({ [message.url]: result });
+
+      // Add to history
+      const history = (await chrome.storage.local.get('history')).history || [];
+      history.unshift({
+        url: message.url,
+        title: message.title,
+        timestamp: Date.now(),
+        result: result
+      });
+      // Keep only last 50
+      if (history.length > 50) history.splice(50);
+      await chrome.storage.local.set({ history });
+
       if (result.risk_level === 'High') {
         chrome.notifications.create({
           type: 'basic',

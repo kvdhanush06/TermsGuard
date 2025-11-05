@@ -47,7 +47,8 @@ async function checkAndAnalyze() {
   chrome.runtime.sendMessage({
     action: 'analyze',
     text: text,
-    url: url
+    url: url,
+    title: document.title
   });
 }
 
