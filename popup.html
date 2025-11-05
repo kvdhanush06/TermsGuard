@@ -5,85 +5,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TermsGuard</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
     body {
       width: 350px;
-      font-family: Arial, sans-serif;
-      padding: 10px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
-    }
-    h3 {
-      margin-top: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
+      overflow-x: hidden;
     }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      margin: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      min-height: 300px;
+    }
+
+    h3 {
+      margin: 0 0 16px 0;
+      color: #1a1a1a;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
     .risk {
-      font-weight: bold;
-      padding: 5px;
-      border-radius: 3px;
-      margin-bottom: 10px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
     .low {
-      background-color: #d4edda;
+      background: linear-gradient(135deg, #d4edda, #c3e6cb);
       color: #155724;
+      border: 1px solid #c3e6cb;
     }
+
     .medium {
-      background-color: #fff3cd;
+      background: linear-gradient(135deg, #fff3cd, #ffeaa7);
       color: #856404;
+      border: 1px solid #ffeaa7;
     }
+
     .high {
-      background-color: #f8d7da;
+      background: linear-gradient(135deg, #f8d7da, #f5c6cb);
       color: #721c24;
+      border: 1px solid #f5c6cb;
     }
-    #summary {
-      margin-bottom: 10px;
+
+    .section {
+      margin-bottom: 16px;
     }
+
+    .section-title {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title::before {
+      content: '📋';
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    .section-title.key-points::before {
+      content: '✅';
+    }
+
+    .section-title.red-flags::before {
+      content: '⚠️';
+    }
+
     ul {
-      padding-left: 20px;
+      padding-left: 0;
+      list-style: none;
     }
+
     li {
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.4;
     }
-    hr {
-      margin: 15px 0;
+
+    li::before {
+      content: '•';
+      color: #667eea;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
     }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 5px 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
+
     .no-analysis {
       color: #666;
       font-style: italic;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
     }
+
     #export-buttons {
       display: none;
-      margin-top: 10px;
+      text-align: center;
+      margin-top: 20px;
     }
-    #export-buttons button {
-      margin-right: 5px;
+
+    button {
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+
+    .loading::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <h3>TermsGuard</h3>
-  <div id="content">
-    <div class="no-analysis">Loading...</div>
-  </div>
-  <div id="export-buttons">
-    <button id="copy-clipboard">Copy to Clipboard</button>
+  <div class="container">
+    <h3>TermsGuard</h3>
+    <div id="content">
+      <div class="loading">Loading...</div>
+    </div>
+    <div id="export-buttons">
+      <button id="copy-clipboard">Copy to Clipboard</button>
+    </div>
   </div>
   <script src="popup.js"></script>
 </body>

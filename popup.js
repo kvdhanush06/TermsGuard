@@ -23,11 +23,16 @@ function displayAnalysis(result) {
   const contentDiv = document.getElementById('content');
   contentDiv.innerHTML = `
     <div class="risk ${result.risk_level.toLowerCase()}">Risk Level: ${result.risk_level}</div>
-    <div id="summary"><strong>Summary:</strong> ${result.summary}</div>
-    <div><strong>Key Points:</strong>
+    <div class="section">
+      <div class="section-title">Summary</div>
+      <p>${result.summary}</p>
+    </div>
+    <div class="section">
+      <div class="section-title key-points">Key Points</div>
       <ul>${result.key_points.map(point => `<li>${point}</li>`).join('')}</ul>
     </div>
-    <div><strong>Red Flags:</strong>
+    <div class="section">
+      <div class="section-title red-flags">Red Flags</div>
       <ul>${result.red_flags.map(flag => `<li>${flag}</li>`).join('')}</ul>
     </div>
   `;
