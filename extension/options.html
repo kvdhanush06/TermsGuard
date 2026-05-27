@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TermsGuard Options</title>
+  <style>
+    body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:20px;background:#f7fafc;color:#0f172a}
+    .card{background:#fff;padding:18px;border-radius:10px;max-width:720px;margin:0 auto;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    h2{margin:0 0 12px}
+    label{display:block;margin-bottom:8px;font-weight:600}
+    input[type=text]{width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:8px}
+    .row{display:flex;gap:8px;margin-top:12px}
+    button{padding:10px 14px;border-radius:8px;border:none;background:#0b5cff;color:#fff;cursor:pointer}
+    button.ghost{background:#e6e6e6;color:#111}
+    p.note{color:#6b7280;margin-top:12px;font-size:13px}
+    .status{margin-top:10px;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>TermsGuard — API Key</h2>
+    <p>Enter your Groq API key below. This key is stored locally in your browser and used to call the Groq API for analysis. Do not share this key publicly.</p>
+
+    <label for="api-key">Groq API Key</label>
+    <input id="api-key" type="text" placeholder="sk-..." autocomplete="off" />
+
+    <div class="row">
+      <button id="save">Save</button>
+      <button id="clear" class="ghost">Remove key</button>
+    </div>
+
+    <div class="status" id="status" aria-live="polite"></div>
+
+    <p class="note">If you plan to publish the extension publicly, prefer asking users to enter their own key rather than embedding one in the extension build.</p>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -37,8 +37,9 @@ function containsLegalKeywords(text) {
 async function checkAndAnalyze() {
   const url = window.location.href;
 
-  const data = await chrome.storage.local.get(url);
-  if (data[url]) return; // Already analyzed
+  const storageGet = (keys) => new Promise((resolve) => chrome.storage.local.get(keys, resolve));
+  const data = await storageGet(url);
+  if (data && data[url]) return; // Already analyzed
 
   if (!containsLegalKeywords(url)) return;
 

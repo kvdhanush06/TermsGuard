@@ -15,12 +15,26 @@ A Chrome extension that analyzes and summarizes terms of service, privacy polici
 
 1. Clone this repository.
 2. Install dependencies: `npm install`
-3. Copy `.env.example` to `.env` and add your Groq API key.
-4. Build the extension: `npm run build`
-5. Open Chrome and go to `chrome://extensions/`.
-6. Enable "Developer mode" in the top right.
-7. Click "Load unpacked" and select the `dist` folder.
-8. The extension should now be installed.
+3. (Recommended) Do nothing yet — after installing the extension you can open the extension Options page and enter your Groq API key (stored locally in the browser).
+
+Alternatively, if you want to produce a pre-bundled ZIP that already contains a key for personal testing, copy `.env.example` to `.env` and add your Groq API key as `GROQ_API_KEY` and then build.
+
+4. Build the extension (this will create a `dist/` folder and a versioned ZIP in the repository root):
+```bash
+npm run build
+```
+
+The build step will (optionally) inject the value of `GROQ_API_KEY` into the built extension files when `.env` is present and produces a file named `termsguard-extension-vX.Y.Z.zip` (version is taken from `extension/manifest.json`). For public releases, prefer the options-page approach (have users enter their own key) or use a server-side proxy.
+
+5. Install the extension locally (developer mode):
+
+```bash
+# unzip and load the unpacked extension
+unzip termsguard-extension-vX.Y.Z.zip -d termsguard-extension
+# open Chrome -> chrome://extensions -> Enable Developer mode -> Load unpacked -> select the unzipped folder
+```
+
+6. Alternatively, after publishing a GitHub Release with the ZIP attached, you can download the ZIP from the Releases page and follow the same "Load unpacked" steps above.
 
 ## Configuration
 
@@ -44,11 +58,15 @@ The extension requires a Groq API key for AI analysis.
 - The background service calls the Groq API for analysis using the openai/gpt-oss-120b model.
 - Results are stored locally and displayed in the popup.
 
-## Privacy
+## Privacy & Security
 
 - Document text is sent to Groq for processing.
 - No personal data is collected by the extension itself.
-- Your API key is stored locally in the `.env` file.
+- Important security note: the current build process injects your GROQ API key into the built extension files. If you publish the ZIP or the built extension publicly, that API key will be visible to anyone who downloads the extension. For production/public releases consider one of these safer alternatives:
+	- Use a small server-side proxy (recommended) that holds the API key and forwards requests from the extension.
+	- Provide an options page where users can enter their own API key into chrome.storage (so you don't publish a shared key).
+
+If you keep using the .env-based build for personal testing, make sure you do not commit any built artifacts containing the secret into the public repository.
 
 ## Development
 
@@ -65,6 +83,10 @@ To modify the extension:
 - Node.js and npm
 - Internet connection for AI analysis
 - Groq API key (free)
+
+## Release automation (optional)
+
+You can automatically create a GitHub Release and upload the ZIP when you push a tag (e.g. `v1.0.0`) by using the provided GitHub Actions workflow in `.github/workflows/release.yml`. The workflow runs the build and uploads the generated `termsguard-extension-v*.zip` as a release asset.
 
 ## License
 
