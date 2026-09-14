@@ -220,3 +220,9 @@ after making changes.
 * Organization trust scoring
 * Multi-provider LLM support
 * Cross-browser support
+
+---
+
+## Built by
+
+**Venkata Dhanush Kakarlamudi** — [Portfolio](https://portfolio.allkvd.dev/)
