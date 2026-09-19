@@ -1,113 +1,62 @@
-# TermsGuard
+# TermsGuard — AI Terms of Service & Privacy Policy Analyzer
 
-AI-powered browser extension that simplifies Terms of Service, Privacy Policies, and user agreements into concise summaries, risk assessments, and actionable insights.
+**TermsGuard** is an AI-powered browser extension and web analyzer that simplifies Terms of Service, Privacy Policies, and user agreements into concise summaries, risk assessments, clause breakdowns, and actionable insights.
 
 **Live:** https://termsguard.allkvd.dev/
 
+**Repository:** https://github.com/kvdhanush06/TermsGuard
+
 ## Problem
 
-Most users accept Terms of Service and Privacy Policies without reading them because legal documents are lengthy, complex, and difficult to understand.
-
-TermsGuard helps users understand important clauses, identify potential risks, and make informed decisions before accepting agreements.
+Most users accept Terms of Service and Privacy Policies without reading them because legal documents are lengthy, complex, and difficult to understand. TermsGuard helps users identify important clauses, understand potential risks, and review agreements in plain language.
 
 ## Features
 
 ### AI-Powered Analysis
 
-* Legal document summarization
-* Key clause extraction
-* Plain-English explanations
-* Risk assessment
+- Legal document summarization
+- Key clause extraction
+- Plain-English explanations
+- Risk assessment
 
 ### Risk Detection
 
-* Identifies potentially concerning clauses
-* Highlights user-impacting terms
-* Categorizes risks into severity levels
+- Identifies potentially concerning clauses
+- Highlights user-impacting terms
+- Categorizes risks into severity levels
 
-Risk Levels:
-
-* Low
-* Medium
-* High
+Risk levels: Low, Medium, High.
 
 ### Smart Insights
 
-* Important clauses extraction
-* Key points summary
-* Red flag detection
-* Browser notifications for high-risk documents
+- Important clause extraction
+- Key-point summaries
+- Red-flag detection
+- Browser notifications for high-risk documents
 
 ### Automatic Detection
 
-TermsGuard automatically detects:
-
-* Terms of Service
-* Privacy Policies
-* User Agreements
-* Legal disclosure pages
-
-using content analysis and legal keyword matching.
+TermsGuard detects Terms of Service, Privacy Policies, User Agreements, and legal disclosure pages using URL and content signals.
 
 ## How It Works
 
-Page Detection
-
-↓
-
-Legal Content Identification
-
-↓
-
-Content Extraction
-
-↓
-
-AI Analysis
-
-↓
-
-Risk Assessment
-
-↓
-
-Summary Generation
-
-↓
-
-Results Display
-
-### Analysis Pipeline
-
-1. Detect legal documents using URL and content-based signals.
-2. Extract relevant document content.
-3. Submit content for AI-powered analysis.
-4. Generate:
-
-   * Summary
-   * Key points
-   * Risk level
-   * Red flags
-5. Display results directly inside the browser extension.
+Page Detection → Legal Content Identification → Content Extraction → AI Analysis → Risk Assessment → Summary Generation → Results Display
 
 ## Tech Stack
 
-### Frontend
+### Frontend & Browser
 
-* JavaScript
-* HTML
-* CSS
-
-### Browser APIs
-
-* Chrome Extensions API
-* Chrome Notifications API
-* Chrome Storage API
+- JavaScript
+- HTML
+- CSS
+- Chrome Extensions API
+- Chrome Notifications API
+- Chrome Storage API
 
 ### AI
 
-* Groq API
-* GPT-OSS-120B
+- Groq API
+- GPT-OSS-120B
 
 ## Project Structure
 
@@ -123,106 +72,36 @@ TermsGuard/
 
 ## Installation
 
-### Clone Repository
-
 ```bash
 git clone https://github.com/kvdhanush06/TermsGuard.git
 cd TermsGuard
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Configure API Key
-
-Recommended approach:
-
-Use the extension settings page and provide your own Groq API key.
-
-Alternative approach:
-
-```bash
-cp .env.example .env
-```
-
-Add:
-
-```env
-GROQ_API_KEY=your_api_key
-```
-
-### Build Extension
-
-```bash
-npm run build
-```
-
-This generates:
-
-```text
-dist/
-termsguard-extension-vX.Y.Z.zip
-```
-
-### Load Extension
-
-1. Open Chrome.
-2. Navigate to:
-
-```text
-chrome://extensions
-```
-
-3. Enable Developer Mode.
-4. Select "Load unpacked".
-5. Choose the generated extension directory.
-
-## Security Considerations
-
-### API Keys
-
-Do not publish builds containing embedded API keys.
-
-Recommended approaches:
-
-* User-provided API keys through extension settings.
-* Backend proxy service for production deployments.
-
-### Privacy
-
-* No personal data is collected by TermsGuard.
-* Document content is processed through Groq for analysis.
-* Results are stored locally in the browser.
-
-## Development
-
-```bash
 npm install
 npm run build
 ```
 
-Reload the extension through:
+Load the generated extension through Chrome's `chrome://extensions` page with Developer Mode enabled.
 
-```text
-chrome://extensions
-```
+## Security & Privacy
 
-after making changes.
+Do not publish builds containing embedded API keys. Prefer user-provided keys through extension settings or a secure backend proxy for production deployments. Document content is processed through the configured AI provider and results are stored locally in the browser.
 
 ## Future Improvements
 
-* Clause categorization
-* Policy comparison
-* Historical policy change tracking
-* Organization trust scoring
-* Multi-provider LLM support
-* Cross-browser support
+- Clause categorization
+- Policy comparison
+- Historical policy change tracking
+- Organization trust scoring
+- Multi-provider LLM support
+- Cross-browser support
 
 ---
 
-## Built by
+## Product & Creator
 
-**Venkata Dhanush Kakarlamudi** — [Portfolio](https://portfolio.allkvd.dev/)
+TermsGuard is a software product published by **Venkata Dhanush Kakarlamudi** under the AllKVD project portfolio.
+
+- **Product:** https://termsguard.allkvd.dev/
+- **Creator:** https://allkvd.dev/
+- **Portfolio:** https://portfolio.allkvd.dev/
+- **GitHub:** https://github.com/kvdhanush06
+- **Resume:** https://drive.google.com/file/d/1NCT6ZCa_HfxCdScqI-1Q2yA6y2c7O-qA/view
