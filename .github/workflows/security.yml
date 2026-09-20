@@ -1,0 +1,37 @@
+name: Security
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Ensure no API key injection remains
+        run: |
+          if grep -R "process.env.GROQ_API_KEY" dist; then
+            echo "Forbidden server-side API key injection reference found in dist."
+            exit 1
+          fi
+
+      - name: Dependency audit
+        run: npm audit --audit-level=high
